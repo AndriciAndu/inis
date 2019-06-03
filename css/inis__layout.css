@@ -1,0 +1,24 @@
+	
+	/* Placement of [navbar] and [main] within the [body] */
+	/* -------------------------------------------- */
+
+		.inis-body {
+			width: 100vw; height: 100vh;
+		}
+
+		.inis-body ,
+		.inis-navbar ,
+		.inis-main {
+			float: left;
+			overflow-x: hidden;
+		}
+
+		@media (max-width: 767.98px) {
+			.inis-navbar { width: 100vw; height: 50px; }
+			.inis-main   { width: 100vw; height: calc(100vh - 50px); }
+		}
+
+		@media (min-width: 767.98px) {
+			.inis-navbar { height: 100vh; width: 12.5vh; }
+			.inis-main   { height: 100vh; width: calc(100vw - 12.5vh); }
+		}

@@ -1,0 +1,172 @@
+
+	/* Commonly changed properties */
+	/* -------------------------------------------- */
+
+		/* Colors */
+		/* -------------------------------------------- */
+
+			.inis-navbar {
+				color: rgb(235,235,235);
+				background-color: #293744;
+			}
+
+			#inis-fb::before {
+				color: rgb(235,235,235);
+				background-color: #3b5998;
+			}
+
+			#inis-fb:hover::before {
+				color: yellow;
+			}
+
+		/* font-size */
+		/* -------------------------------------------- */
+
+			.inis-navbar__btn__text { font-size: 1.7vh; }
+			
+			@media (max-width: 767.98px) {
+				.inis-navbar__btn__faIcon::before { font-size: 2.7vh; }
+			}
+			@media (min-width: 767.98px) {
+				.inis-navbar__btn__faIcon::before { font-size: 3.5vh; }
+			}
+			
+
+	/* Placement of [btnCointainer] within [navbar] */
+	/* -------------------------------------------- */
+
+		.inis-navbar {
+			display: flex;
+			justify-content: space-between;
+		}
+
+		@media (max-width: 767.98px) {
+			.inis-navbar { flex-direction: row; }
+
+			.inis-navbar__btnCointainer--tabButtons    { flex: 1 1 0; }
+			.inis-navbar__btnCointainer--socialButtons { flex: 0 0 50px; }
+		}
+
+		@media (min-width: 767.98px) {
+			.inis-navbar { flex-direction: column; }
+
+			.inis-navbar__btnCointainer--tabButtons    { flex: 1 1 0; }
+			.inis-navbar__btnCointainer--socialButtons { flex: 0 0 12.5vh; }
+		}
+
+	/* Placement of [Buttons] within [btnCointainer] */
+	/* -------------------------------------------- */
+
+		.inis-navbar__btnCointainer {
+			display: flex;
+		}
+
+		@media (max-width: 767.98px) {
+			.inis-navbar__btnCointainer { flex-direction: row; }
+			.inis-navbar__btn { height: 100%; flex: 1 1 0;}
+		}
+
+		@media (min-width: 767.98px) {
+			.inis-navbar__btnCointainer { flex-direction: column; }
+			.inis-navbar__btn { width: 100%; height: 12.5vh; }
+		}
+
+	/* Buttons */
+	/* -------------------------------------------- */
+		
+		.inis-navbar__btn {
+			position: relative;
+			text-align: center;
+			overflow: hidden;
+		}
+
+		/* border */
+		@media (max-width: 767.98px) {
+			.inis-navbar__btn { border-right:  1px solid rgba(3,3,3,.1); }
+		}
+		@media (min-width: 767.98px) {
+			.inis-navbar__btn { border-bottom: 1px solid rgba(3,3,3,.1); }
+		}
+
+		/* overlay */
+		.inis-navbar__btn::after { 
+			content: '';
+			position: absolute;
+			top: 0; left: 0; right: 0; bottom: 0;
+			z-index: 2;
+		}
+
+		/* icon and text */
+		.inis-navbar__btn__faIcon ,
+		.inis-navbar__btn__text {
+			position: relative;
+			width: 100%; height: 50%;
+			overflow: hidden;
+
+			display: flex !important; /* overide [.fa] default [display] */
+			align-items: center;
+			justify-content: center;
+
+			opacity: .1; 
+		    -webkit-transition: opacity .2s , transform .3s;
+		       -moz-transition: opacity .2s , transform .3s;
+		         -o-transition: opacity .2s , transform .3s;
+		            transition: opacity .2s , transform .3s;
+		}
+		.inis-navbar__btn__faIcon {
+			-webkit-transform: translate3d(0,  50%, 0);
+				-ms-transform: translate3d(0,  50%, 0);
+					transform: translate3d(0,  50%, 0);
+		}
+		.inis-navbar__btn__text {
+			-webkit-transform: translate3d(0, 100%, 0);
+				-ms-transform: translate3d(0, 100%, 0);
+					transform: translate3d(0, 100%, 0);
+		}
+
+		/* Hover */
+		.inis-navbar__btn:hover .inis-navbar__btn__text {
+			opacity: 1;
+			-webkit-transform: translate3d(0, 0, 0);
+				-ms-transform: translate3d(0, 0, 0);
+					transform: translate3d(0, 0, 0);
+		}
+		.inis-navbar__btn:hover .inis-navbar__btn__faIcon {
+			opacity: 1;
+			-webkit-transform: translate3d(0, 25%, 0);
+				-ms-transform: translate3d(0, 25%, 0);
+					transform: translate3d(0, 25%, 0);
+		}
+
+		/* Active */
+		.inis-navbar__btn.active .inis-navbar__btn__text   ,
+		.inis-navbar__btn.active .inis-navbar__btn__faIcon {
+			opacity: 1;
+			color: yellow;
+		}
+
+	/* facebook btn -- extra */
+	/* -------------------------------------------- */
+
+		#inis-fb {
+			display: flex;
+			align-items: center;
+			justify-content: center;
+		}
+
+		#inis-fb::before {
+			position: relative;
+			width: 35px; height: 35px;
+			background-color: #3b5998;
+			border-radius: 50%;
+
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			box-shadow: 2px 2px 2px rgba(3,3,3,.3);
+
+		    -webkit-transition: color .3s ease-out;
+		       -moz-transition: color .3s ease-out;
+		         -o-transition: color .3s ease-out;
+		            transition: color .3s ease-out;
+		}

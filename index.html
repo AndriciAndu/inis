@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<title> InIS - We should really change the name, i know </title>
+
+	<!-- Custom CSS -->
+	<link href="css/asterisk-build-min.css"		type="text/css" rel="stylesheet">
+	<link href="css/inis__layout.css"			type="text/css" rel="stylesheet">
+	<link href="css/inis__navbar.css"			type="text/css" rel="stylesheet">
+	<link href="css/inis__tabs.css"				type="text/css" rel="stylesheet">
+	<link href="css/inis__eventCard.css"		type="text/css" rel="stylesheet">
+	<link href="css/inis__entityCard.css"		type="text/css" rel="stylesheet">
+	<link href="css/imgLoadingOverlay.css"		type="text/css" rel="stylesheet">
+
+	<!-- Custom Font - Roboto || Font Awesome -->
+	<link href='https://fonts.googleapis.com/css?family=Roboto:400,700' rel='stylesheet' type='text/css'>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+	<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+	<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+	<!--[if lt IE 9]>
+	  <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+	  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+	<![endif]-->
+  </head>
+
+<body class="inis-body" style="font-family: 'Roboto';">
+
+	<!-- Navbar -->
+	<div id="inis-navbar" class="inis-navbar">
+
+		<div class="inis-navbar__btnCointainer  inis-navbar__btnCointainer--tabButtons">
+			<!-- Events -->
+			<button  class="inis-navbar__btn  inis-navbar__btn--tabBtn  active" data-targetTab="inis--tab--events"> 
+				<div class="inis-navbar__btn__faIcon fa fa-calendar-check-o"></div>
+				<div class="inis-navbar__btn__text"> Events </div>
+			</button>
+
+			<!-- Online -->
+			<button  class="inis-navbar__btn  inis-navbar__btn--tabBtn" data-targetTab="inis--tab--online">
+				<div class="inis-navbar__btn__faIcon fa fa-globe"></div>
+				<div class="inis-navbar__btn__text"> Online </div>
+			</button>
+
+			<!-- Comunities -->
+			<button  class="inis-navbar__btn  inis-navbar__btn--tabBtn" data-targetTab="inis--tab--communities">
+				<div class="inis-navbar__btn__faIcon fa fa-users"></div>
+				<div class="inis-navbar__btn__text"> Comunities </div>
+			</button>
+		</div>
+
+		<div class="inis-navbar__btnCointainer  inis-navbar__btnCointainer--socialButtons">
+			<!-- Social Media -->
+			<a id="inis-fb" class="inis-navbar__btn fa fa-facebook" 
+				href="https://www.facebook.com/inIS-813183179020829/" target="_blank"></a>
+		</div>
+
+	</div>
+
+	<!-- main content -->
+	<div id="inis-main"   class="inis-main"> 
+		<div class="container py-0 xs-o-px-0 sm-o-px-0"> 
+			<div id="events"       class="inis--tab  inis--tab--events active"></div>
+
+			<div id="online"       class="inis--tab  inis--tab--online"></div>
+
+			<div id="communities"  class="inis--tab  inis--tab--communities">
+				<div id="entities-cardsGroup--Hub"        class="entities-cardGroup">
+					<div class="entities-cardGroup__title"> Hubs        </div>
+				</div>
+				<div id="entities-cardsGroup--UserGroup"  class="entities-cardGroup">
+					<div class="entities-cardGroup__title"> User Groups </div>
+				</div>
+				<div id="entities-cardsGroup--Community"  class="entities-cardGroup">
+					<div class="entities-cardGroup__title"> Communities </div>
+				</div>
+				<div id="entities-cardsGroup--Project"    class="entities-cardGroup">
+					<div class="entities-cardGroup__title"> Projects    </div>
+				</div>
+				<div id="entities-cardsGroup--Conference" class="entities-cardGroup">
+					<div class="entities-cardGroup__title"> Conferences </div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- Scripts -->
+	<!-- ============================== -->
+	
+		<!-- Scripts Order :
+
+			// Checkpoints description :
+			// ==================
+
+				[Checkpoint 1] >> [inis_data] is available
+				[Checkpoint 2] >> [inis_data] is updated and usable to generate Cards
+				[Checkpoint 3] >> All cards are present (generated) within DOM
+				[Checkpoint 4] >> Images-fetching process initialized
+				[Checkpoint 5] >> DOM Eventlisteners added
+
+
+			// General Setup :
+			// ==================
+				[1] [utility.js]                    // a few utility functions which can be used throughout the app (currently only a few)
+													// Currently used within : [imgLoadingOverlay.js] , [component__navbar.js]
+
+			
+			// Starting [Checkpoint 1]
+			// ==================
+
+				[2] [inis_data.js]                  // contains [inis_data] Object, which holds the baseline info of all events/entities
+			
+				// === Completed [Checkpoint 1] >> [inis_data] is available
+
+
+			// Starting [Checkpoint 2]
+			// ==================
+
+				[3] [inis_data_addDateInfo.js]      // functionality to add [Date() parameters] to all events, within the [inis_data] Object
+
+				// === Completed [Checkpoint 2] >> [inis_data] is updated and usable to generate Cards
+			
+
+			// Starting [Checkpoint 3]
+			// ==================
+
+				[4] [inis_createCards_events.js]	// creates the Event Cards
+				[5] [inis_createCards_entities.js]	// creates the Entities Cards
+
+				// === Completed [Checkpoint 3] >> All cards are present (generated) within DOM
+
+
+			// Starting [Checkpoint 4]
+			// ==================
+
+				[6] [imgLoadingOverlay.js]			//  loads all images && removes the image-loading-overlay, when each image is ready
+			
+				// === Completed [Checkpoint 4] >> Images-fetching process initialized
+
+
+			// Starting [Checkpoint 5]
+			// ==================
+
+				[7] [component__navbar.js]				// adds the eventListener for [.inis-navbar]
+
+				// === Completed [Checkpoint 5] >> DOM Eventlisteners added
+			-->
+
+		<script type="text/javascript" src="js/utility.js"></script>
+		<script type="text/javascript" src="js/inis_data.js"></script>
+		<script type="text/javascript" src="js/inis_data_addDateInfo.js"></script>
+		<script type="text/javascript" src="js/inis_createCards_events.js"></script>
+		<script type="text/javascript" src="js/inis_createCards_entities.js"></script>
+		<script type="text/javascript" src="js/imgLoadingOverlay.js"></script>
+		<script type="text/javascript" src="js/component__navbar.js"></script>
+		<script type="text/javascript" src="js/component__tabs.js"></script>
+
+		<script>
+			// on initial load - scroll to top of page
+			document.getElementsByTagName('html')[0].scrollTop = 0
+		</script>
+</body>

@@ -1,0 +1,48 @@
+
+	/* Skeleton Overlay */
+	/* ----------------------------------------*/
+	/* -- placeholder loading-animation for images and background-images */
+	/* -- is applied as a 2-layer overlay, over the containg Element */
+
+		.imgLoadingOverlay {
+			position: relative;
+			overflow: hidden;
+		}
+
+		.imgLoadingOverlay::before ,
+		.imgLoadingOverlay::after  {
+			content: '';
+			position: absolute;
+			top: 0; left: 0; 
+			width: 100%; height: 100%;
+
+		    background-size: 100%;
+		    background-position: 0 0;
+
+		    /* there is a delay between the [image.onload] and the actual [painting to the screen], which is visible at times, even with [requestAnimationFrame] */
+		    /* applies an extra [200ms delay] and a [300ms transition] to help avoid this */
+		    transition: opacity .3s .2s ease-out;
+		}
+
+		.imgLoadingOverlay::before { /* static overlay - covers/hides the underlying content */
+			background: #eeeeee !important;
+		}
+		.imgLoadingOverlay::after {  /* animated overlay - simulates the loading effect */
+		    background: linear-gradient(to right, #eeeeee 8%, #dddddd 18%, #eeeeee 33%);
+		    -webkit-animation: imgLoadingOverlayAnimation 1s ease-in-out infinite;
+		    		animation: imgLoadingOverlayAnimation 1s ease-in-out infinite;
+		}
+
+		@-webkit-keyframes imgLoadingOverlayAnimation {
+			0%   { -webkit-transform: translate3d(-50%, 0, 0) ; -ms-transform: translate3d(-50%, 0, 0) ; transform: translate3d(-50%, 0, 0) ; }
+			100% { -webkit-transform: translate3d(150%, 0, 0) ; -ms-transform: translate3d(150%, 0, 0) ; transform: translate3d(150%, 0, 0) ; }
+		}
+				@keyframes imgLoadingOverlayAnimation {
+			0%   { -webkit-transform: translate3d(-50%, 0, 0) ; -ms-transform: translate3d(-50%, 0, 0) ; transform: translate3d(-50%, 0, 0) ; }
+			100% { -webkit-transform: translate3d(150%, 0, 0) ; -ms-transform: translate3d(150%, 0, 0) ; transform: translate3d(150%, 0, 0) ; }
+		}
+
+		.imgLoadingOverlay.imgLoadingOverlay__exitTransition::before,
+		.imgLoadingOverlay.imgLoadingOverlay__exitTransition::after {
+			opacity: 0;
+		}

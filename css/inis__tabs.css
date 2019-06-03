@@ -1,0 +1,11 @@
+
+	/* Navigation Tabs */
+	/* -------------------------------------------- */
+
+		.inis--tab {
+			position: relative;
+		}
+
+		.inis--tab:not(.active) {
+			display: none;
+		}
